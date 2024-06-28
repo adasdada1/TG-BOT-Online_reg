@@ -1,0 +1,18 @@
+{
+  "name": "tg-bot-online-registration",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "nodemon --ignore services.json index.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@grammyjs/conversations": "^1.2.0",
+    "dotenv": "^16.4.5",
+    "grammy": "^1.25.0",
+    "mysql2": "^3.10.1",
+    "nodemon": "^3.1.4"
+  }
+}

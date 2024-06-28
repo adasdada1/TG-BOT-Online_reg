@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const timeOfRegistration = [];
+      function getTime(timeOfStart, gap, timeOfEnd, initialTime) {
+        if (!timeOfRegistration.includes(initialTime))
+          timeOfRegistration.push(initialTime);
+        const timeSplitted = timeOfStart.split(":");
+        const timeOfEndSplitted = timeOfEnd.split(":");
+
+        let hours = parseInt(timeSplitted[0]);
+        let minutes = parseInt(timeSplitted[1]);
+
+        minutes += gap;
+        if (minutes >= 60) {
+          const hour = Math.floor(minutes / 60);
+          const minute = minutes % 60;
+          timeSplitted[0] = hours + hour;
+          timeSplitted[1] = minute;
+        } else {
+          timeSplitted[1] = minutes;
+        }
+        timeSplitted.forEach((el, index) => {
+          if (String(el).length === 1) {
+            timeSplitted[index] = `0${el}`;
+          } else {
+            timeSplitted[index] = String(el);
+          }
+        });
+        const newTime = timeSplitted.join(":");
+        if (
+          timeSplitted[0] == timeOfEndSplitted[0] &&
+          timeSplitted[1] == timeOfEndSplitted[1]
+        ) {
+          return timeSplitted;
+        }
+
+        timeOfRegistration.push(newTime);
+
+        getTime(newTime, gap, timeOfEnd, initialTime);
+      }
+
+      getTime("12:00", 30, "18:00", "12:00");
+      console.log(timeOfRegistration);
+    </script>
+  </body>
+</html>
